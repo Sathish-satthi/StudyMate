@@ -9,12 +9,12 @@ Build a stunning, minimalist base and ensure the authentication flow is rock-sol
 - [ ] Task 1.3: Backend Auth verification & JWT integration.
 - [ ] Task 1.4: Navbar & Basic Layout with smooth transitions.
 
-### Phase 2: Subject & Notes Vault
-Implement the core feature: uploading and viewing subject notes.
-- [ ] Task 2.1: Define Mongoose Schema for Subjects and Notes.
-- [ ] Task 2.2: Build Note Upload API (Backend).
-- [ ] Task 2.3: Subject Dashboard UI (Clean Grid/List view).
-- [ ] Task 2.4: Note Detail View / PDF Viewer integration.
+### Phase 2: Subject & Modules Vault
+Implement the core feature: uploading and viewing subject notes organized by modules.
+- [ ] Task 2.1: Define Mongoose Schema for Subjects, Modules, and Notes.
+- [ ] Task 2.2: Build Note Upload API with Module support (Backend).
+- [ ] Task 2.3: Subject Dashboard UI with the following list: DAA, DT, LSS, FSD, ATC.
+- [ ] Task 2.4: Module Detail View (4 Modules per subject) for uploading and viewing notes.
 
 ### Phase 3: Important Questions Hub
 A dedicated space for the "Important Questions" classmates need.

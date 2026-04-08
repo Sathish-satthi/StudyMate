@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment Variables
+.env
+server/.env
+client/.env
+
+# Build outputs
+dist/
+client/dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploads (Optional: usually you don't push user uploads to GitHub)
+server/uploads/*
+!server/uploads/.gitkeep
