@@ -1,0 +1,11 @@
+[config]
+rootDir = "server"
+
+[phases.build]
+cmds = [
+  "cd ../client && npm install && npm run build && cp -r dist ../server/public",
+  "npm install"
+]
+
+[start]
+cmd = "node server.js"
