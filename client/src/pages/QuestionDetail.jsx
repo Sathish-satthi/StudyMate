@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import API from "../api";
 
 function QuestionDetail() {
   const { id } = useParams();
@@ -24,7 +24,7 @@ function QuestionDetail() {
   const fetchQuestions = async () => {
     try {
       // Using 'All' as a placeholder module for unified questions
-      const res = await axios.get(`http://localhost:5000/api/notes/${id}/All/question`);
+      const res = await API.get(`/notes/${id}/All/question`);
       setQuestions(res.data);
     } catch (err) {
       console.error("Failed to fetch questions");
@@ -44,7 +44,7 @@ function QuestionDetail() {
       formData.append("module", "All"); // Unified category
       formData.append("type", "question");
 
-      return axios.post("http://localhost:5000/api/notes/upload", formData, {
+      return API.post("/notes/upload", formData, {
         headers: { "x-auth-token": token }
       });
     });
@@ -62,7 +62,7 @@ function QuestionDetail() {
     if (!window.confirm("Are you sure you want to delete this question?")) return;
     const token = localStorage.getItem("userToken");
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${itemId}`, {
+      await API.delete(`/notes/${itemId}`, {
         headers: { "x-auth-token": token }
       });
       fetchQuestions();

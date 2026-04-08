@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 
 function Timetable() {
   const [timetable, setTimetable] = useState(null);
@@ -15,7 +15,7 @@ function Timetable() {
 
   const fetchTimetable = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/notes/general/none/timetable");
+      const res = await API.get("/notes/general/none/timetable");
       // Pick the latest one
       if (res.data.length > 0) {
         setTimetable(res.data[0]);
@@ -40,12 +40,12 @@ function Timetable() {
     try {
       // If a timetable already exists, delete it first to ensure "Only one file enough"
       if (timetable) {
-        await axios.delete(`http://localhost:5000/api/notes/${timetable._id}`, {
+        await API.delete(`/notes/${timetable._id}`, {
           headers: { "x-auth-token": token }
         });
       }
 
-      await axios.post("http://localhost:5000/api/notes/upload", formData, {
+      await API.post("/notes/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           "x-auth-token": token
@@ -64,7 +64,7 @@ function Timetable() {
   const handleDelete = async () => {
     if (!window.confirm("Delete the current timetable?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${timetable._id}`, {
+      await API.delete(`/notes/${timetable._id}`, {
         headers: { "x-auth-token": token }
       });
       setTimetable(null);

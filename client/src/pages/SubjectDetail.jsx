@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import API from "../api";
 
 function SubjectDetail() {
   const { id } = useParams();
@@ -28,7 +28,7 @@ function SubjectDetail() {
 
   const fetchNotes = async (mod) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/notes/${id}/${mod}/note`);
+      const res = await API.get(`/notes/${id}/${mod}/note`);
       setNotes(prev => ({ ...prev, [mod]: res.data }));
     } catch (err) {
       console.error("Failed to fetch notes for", mod);
@@ -48,7 +48,7 @@ function SubjectDetail() {
       formData.append("module", activeModule);
       formData.append("type", "note");
 
-      return axios.post("http://localhost:5000/api/notes/upload", formData, {
+      return API.post("/notes/upload", formData, {
         headers: { "x-auth-token": token }
       });
     });
@@ -67,7 +67,7 @@ function SubjectDetail() {
     if (!window.confirm("Are you sure you want to delete this note?")) return;
     const token = localStorage.getItem("userToken");
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${noteId}`, {
+      await API.delete(`/notes/${noteId}`, {
         headers: { "x-auth-token": token }
       });
       fetchNotes(mod);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 import { Link } from "react-router-dom";
 
 function AdminPanel() {
@@ -14,7 +14,7 @@ function AdminPanel() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/all", {
+      const res = await API.get("/users/all", {
         headers: { "x-auth-token": token }
       });
       setUsers(res.data);
@@ -25,7 +25,7 @@ function AdminPanel() {
 
   const fetchStats = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/stats", {
+      const res = await API.get("/users/stats", {
         headers: { "x-auth-token": token }
       });
       setStats(res.data);
@@ -37,7 +37,7 @@ function AdminPanel() {
   const deleteUser = async (id) => {
     if (!window.confirm("Are you sure you want to remove this user?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`, {
+      await API.delete(`/users/${id}`, {
         headers: { "x-auth-token": token }
       });
       fetchUsers();
